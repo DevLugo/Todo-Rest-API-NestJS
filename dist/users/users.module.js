@@ -7,17 +7,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const users_module_1 = require("./users/users.module");
-let AppModule = class AppModule {
+const users_service_1 = require("./users.service");
+const users_controller_1 = require("./users.controller");
+let UsersModule = class UsersModule {
 };
-AppModule = __decorate([
+UsersModule = __decorate([
     common_1.Module({
-        imports: [users_module_1.UsersModule],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        imports: [],
+        providers: [users_service_1.UsersService],
+        controllers: [users_controller_1.UsersController]
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], UsersModule);
+exports.UsersModule = UsersModule;
+//# sourceMappingURL=users.module.js.map

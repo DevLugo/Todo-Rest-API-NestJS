@@ -1,21 +1,25 @@
 import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import {CreateUserDto } from './dto/create-user.dto'
+import { UsersService } from './users.service';
+import { User } from './user.entity';
 
 @Controller('users')
 export class UsersController {
+    constructor(private readonly userService: UsersService) {
+    }
     @Get()
     findAll(): string {
         return 'Get All Items';
     }
 
     @Get(':id')
-    findOne(@Param('id') id): string {
-        return `Item ${id}`;
+    findOne(@Param('id') id): Promise<User> {
+        return this.userService.getUser(id);
     }
 
     @Post()
-    create(@Body() user: CreateUserDto): string {
-        return `Name: ${user.name} Email: ${user.email};`
+    create(@Body() user: CreateUserDto): Promise<User> {
+        return this.userService.createUser(user);
     }
 
     @Delete(':id')
@@ -25,6 +29,6 @@ export class UsersController {
 
     @Put(':id')
     update(@Body() updateUserDto: CreateUserDto, @Param('id') id): string{
-        return `Update ${id} - Name:${updateUserDto.name}`;
+        return `Update ${id} - Name:${updateUserDto.fullName}`;
     }
 }

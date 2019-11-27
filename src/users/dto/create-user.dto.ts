@@ -3,7 +3,7 @@ import {IsNotEmpty, IsNumber, IsPositive, IsString, IsEmail, IsBoolean} from 'cl
 export class CreateUserDto{
     @IsNotEmpty({message: 'Required field'})
     @IsString({message: 'Field need be a string'})
-    name:string
+    fullName:string
     
     @IsEmail()
     email:string;

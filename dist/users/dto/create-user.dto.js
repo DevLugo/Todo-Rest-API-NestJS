@@ -16,7 +16,7 @@ __decorate([
     class_validator_1.IsNotEmpty({ message: 'Required field' }),
     class_validator_1.IsString({ message: 'Field need be a string' }),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "name", void 0);
+], CreateUserDto.prototype, "fullName", void 0);
 __decorate([
     class_validator_1.IsEmail(),
     __metadata("design:type", String)

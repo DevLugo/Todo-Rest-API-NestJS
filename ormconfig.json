@@ -1,10 +1,10 @@
 {
     "type": "mysql",
-    "host": "localhost",
+    "host": "remotemysql.com",
     "port": 3306,
-    "username": "root",
-    "password": "root",
-    "database": "test",
+    "username": "bZgFfiI8s8",
+    "password": "H91gOp9Ajd",
+    "database": "bZgFfiI8s8",
     "entities": ["dist/**/*.entity{.ts,.js}"],
     "synchronize": true
 }

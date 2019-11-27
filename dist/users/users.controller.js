@@ -14,21 +14,25 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const create_user_dto_1 = require("./dto/create-user.dto");
+const users_service_1 = require("./users.service");
 let UsersController = class UsersController {
+    constructor(userService) {
+        this.userService = userService;
+    }
     findAll() {
         return 'Get All Items';
     }
     findOne(id) {
-        return `Item ${id}`;
+        return this.userService.getUser(id);
     }
     create(user) {
-        return `Name: ${user.name} Email: ${user.email};`;
+        return this.userService.createUser(user);
     }
     delete(id) {
         return `Delete ${id}`;
     }
     update(updateUserDto, id) {
-        return `Update ${id} - Name:${updateUserDto.name}`;
+        return `Update ${id} - Name:${updateUserDto.fullName}`;
     }
 };
 __decorate([
@@ -42,14 +46,14 @@ __decorate([
     __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", String)
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "findOne", null);
 __decorate([
     common_1.Post(),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
-    __metadata("design:returntype", String)
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "create", null);
 __decorate([
     common_1.Delete(':id'),
@@ -66,7 +70,8 @@ __decorate([
     __metadata("design:returntype", String)
 ], UsersController.prototype, "update", null);
 UsersController = __decorate([
-    common_1.Controller('users')
+    common_1.Controller('users'),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersController);
 exports.UsersController = UsersController;
 //# sourceMappingURL=users.controller.js.map

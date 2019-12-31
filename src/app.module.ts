@@ -9,6 +9,7 @@ import { ConfigService } from './modules/config/config.service';
 import { ConfigModule } from './modules/config/config.module';
 import { Configuration } from './modules/config/config.keys';
 import { DatabaseModule } from './database/database.module';
+import { TodoModule } from './modules/todo/todo.module';
 
 @Module({
   imports: [
@@ -16,16 +17,15 @@ import { DatabaseModule } from './database/database.module';
     UsersModule,
     AuthModule,
     ConfigModule,
-    DatabaseModule
+    DatabaseModule,
+    TodoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {
   static port: number | string;
-  constructor(
-    private readonly _configService: ConfigService
-  ){
+  constructor(private readonly _configService: ConfigService) {
     AppModule.port = this._configService.get(Configuration.PORT);
   }
 }

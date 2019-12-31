@@ -7,13 +7,14 @@ import {
   UseGuards,
   Put,
   Param,
+  Delete,
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { TodoCreateDto } from './dto/TodoCreate.dto';
-import { TodoDto } from './dto/Todo.dto';
 import { Todo } from './todo.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { TodoUpdateDto } from './dto/TodoUpdate.dto';
+import { TodoDto } from './dto/Todo.dto';
 
 @Controller('todo')
 @UseGuards(AuthGuard())
@@ -32,7 +33,7 @@ export class TodoController {
   }
 
   @Get('/')
-  async getTodos(@Request() req) {
+  async getTodos(@Request() req): Promise<TodoDto[]> {
     const todos = this._todoService.getTodosByUserId(req.user.id);
     return todos;
   }
@@ -42,13 +43,20 @@ export class TodoController {
     @Body() todoUpdateDto: TodoUpdateDto,
     @Param('id') todoId: string,
     @Request() req,
-  ) {
+  ): Promise<TodoDto> {
     const userId = Number(req.user.id);
     const todo = this._todoService.updateTodo(
       Number(todoId),
       userId,
       todoUpdateDto,
     );
+    return todo;
+  }
+
+  @Delete('/:id')
+  async deleteTodo(@Param('id') todoId: string, @Request() req): Promise<void> {
+    const userId = Number(req.user.id);
+    const todo = this._todoService.removeTodo(Number(todoId), userId);
     return todo;
   }
 }

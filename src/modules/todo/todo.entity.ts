@@ -5,14 +5,17 @@ import {
   Column,
   ManyToOne,
 } from 'typeorm';
+import { ApiProperty } from '@nestjs/swagger';
 import { User } from '../users/user.entity';
 import { IsBoolean } from 'class-validator';
 
 @Entity('todos')
 export class Todo extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
+  @ApiProperty()
   id: number;
 
+  @ApiProperty()
   @Column({ type: 'varchar', length: 250, nullable: false })
   description: string;
 

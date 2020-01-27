@@ -7,6 +7,8 @@ import {
 } from '@nestjs/common';
 import { SignUpDto, SignInDto } from './dto';
 import { AuthService } from './auth.service';
+import { ApiResponse } from '@nestjs/swagger';
+import { ToekenDto } from './dto/token.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -18,6 +20,7 @@ export class AuthController {
     return this._authservice.signup(signUpDto);
   }
 
+  @ApiResponse({ status: 200, type: ToekenDto })
   @Post('/signin')
   @UsePipes(ValidationPipe)
   async signin(@Body() signInDto: SignInDto) {

@@ -15,11 +15,15 @@ import { Todo } from './todo.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { TodoUpdateDto } from './dto/TodoUpdate.dto';
 import { TodoDto } from './dto/Todo.dto';
+import { ApiResponse, ApiHeader, ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Controller('todo')
 @UseGuards(AuthGuard())
 export class TodoController {
   constructor(private readonly _todoService: TodoService) {}
+
+  @ApiResponse({ status: 201, type: TodoDto })
   @Post('/')
   async createTodo(
     @Body() todoCreateDto: TodoCreateDto,
@@ -32,12 +36,14 @@ export class TodoController {
     return createdTodo;
   }
 
+  @ApiResponse({ status: 200, type: [TodoDto] })
   @Get('/')
   async getTodos(@Request() req): Promise<TodoDto[]> {
     const todos = this._todoService.getTodosByUserId(req.user.id);
     return todos;
   }
 
+  @ApiResponse({ status: 200, type: TodoDto })
   @Put('/:id')
   async updateTodo(
     @Body() todoUpdateDto: TodoUpdateDto,

@@ -11,6 +11,7 @@ async function bootstrap() {
 
   //Swagger Configuration
   const options = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('TODO')
     .setDescription('API Documentation')
     .setVersion('1.0')

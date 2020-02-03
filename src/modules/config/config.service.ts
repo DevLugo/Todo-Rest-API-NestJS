@@ -5,6 +5,12 @@ export class ConfigService {
 
   constructor() {
     const isDevelopmentEnv = process.env.NODE_ENV !== 'productions';
+    console.log('----------------------------');
+    console.log('----------------------------');
+    console.log(process.env.PORT);
+    console.log('----------------------------');
+    console.log('----------------------------');
+    console.log('----------------------------');
 
     this.envConfig = {
       PORT: process.env.PORT,

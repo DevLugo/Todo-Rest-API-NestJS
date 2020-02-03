@@ -2,6 +2,7 @@ import { Repository, EntityRepository } from 'typeorm';
 import { Todo } from './todo.entity';
 import { TodoCreateDto } from './dto/TodoCreate.dto';
 import { TodoDto } from './dto/Todo.dto';
+import { RpcException } from '@nestjs/microservices';
 
 @EntityRepository(Todo)
 export class TodoRepository extends Repository<Todo> {
@@ -20,5 +21,16 @@ export class TodoRepository extends Repository<Todo> {
       ...todoDto,
       id,
     });
+  }
+
+  async deleteById(id: string): Promise<object> {
+    const result = await this.delete(id);
+
+    if (result.affected === 0) {
+      throw new RpcException(`Todo with ID ${id} not found`);
+    }
+    return {
+      success: true,
+    };
   }
 }

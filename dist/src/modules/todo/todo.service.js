@@ -22,8 +22,34 @@ let TodoService = class TodoService {
     async createTodo(todo) {
         return this._todoRepository.createTodo(todo);
     }
-    async getTodosByUser(id) {
-        return this._todoRepository.getAllByUserId(id);
+    async getTodosByUserId(id) {
+        return this._todoRepository.getAllByUserId(Number(id));
+    }
+    async updateTodo(id, userId, todoUpdateDto) {
+        let todoToUpdate = await this._todoRepository.findOne({
+            where: {
+                id,
+                user: userId,
+            },
+        });
+        if (!todoToUpdate) {
+            throw new common_1.NotFoundException();
+        }
+        let finalObject = Object.assign(Object.assign({}, todoToUpdate), todoUpdateDto);
+        let updatedTodo = await this._todoRepository.save(finalObject);
+        return updatedTodo;
+    }
+    async removeTodo(id, userId) {
+        const todoToRemove = await this._todoRepository.findOne({
+            where: {
+                id,
+                user: userId,
+            },
+        });
+        if (!todoToRemove) {
+            throw new common_1.NotFoundException();
+        }
+        await this._todoRepository.deleteById(String(id));
     }
 };
 TodoService = __decorate([

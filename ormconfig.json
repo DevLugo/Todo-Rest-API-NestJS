@@ -5,6 +5,6 @@
   "username": "bZgFfiI8s8",
   "password": "H91gOp9Ajd",
   "database": "bZgFfiI8s8",
-  "entities": ["src/**/*.entity{.ts,.js}"],
+  "entities": ["dist/**/*.entity.js"],
   "synchronize": true
 }

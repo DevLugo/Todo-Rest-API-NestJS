@@ -10,15 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
+const swagger_1 = require("@nestjs/swagger");
 const user_entity_1 = require("../users/user.entity");
 const class_validator_1 = require("class-validator");
 let Todo = class Todo extends typeorm_1.BaseEntity {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn('increment'),
+    swagger_1.ApiProperty(),
     __metadata("design:type", Number)
 ], Todo.prototype, "id", void 0);
 __decorate([
+    swagger_1.ApiProperty(),
     typeorm_1.Column({ type: 'varchar', length: 250, nullable: false }),
     __metadata("design:type", String)
 ], Todo.prototype, "description", void 0);
@@ -44,11 +47,12 @@ __decorate([
         type: 'timestamp',
         name: 'update_at',
         onUpdate: 'CURRENT_TIMESTAMP',
+        nullable: true,
     }),
     __metadata("design:type", Date)
 ], Todo.prototype, "updateAt", void 0);
 __decorate([
-    typeorm_1.ManyToOne(type => user_entity_1.User, user => user.todos),
+    typeorm_1.ManyToOne(type => user_entity_1.User, user => user.todos, { nullable: false }),
     __metadata("design:type", user_entity_1.User)
 ], Todo.prototype, "user", void 0);
 Todo = __decorate([

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TodoRepository } from './todo.repository';
 import { TodoDto } from './dto/Todo.dto';
@@ -31,10 +31,28 @@ export class TodoService {
         user: userId,
       },
     });
-    //#todoToUpdate.description = 'Me, my friends and polar bears';
-    //todoDto
+
+    if (!todoToUpdate) {
+      throw new NotFoundException();
+    }
+
     let finalObject = { ...todoToUpdate, ...todoUpdateDto };
     let updatedTodo = await this._todoRepository.save(finalObject);
     return updatedTodo;
+  }
+
+  async removeTodo(id: Number, userId: Number): Promise<void> {
+    const todoToRemove = await this._todoRepository.findOne({
+      where: {
+        id,
+        user: userId,
+      },
+    });
+
+    if (!todoToRemove) {
+      throw new NotFoundException();
+    }
+
+    await this._todoRepository.deleteById(String(id));
   }
 }

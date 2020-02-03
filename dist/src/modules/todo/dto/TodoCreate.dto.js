@@ -10,11 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
+const swagger_1 = require("@nestjs/swagger");
 class TodoCreateDto {
 }
 __decorate([
     class_validator_1.IsNotEmpty({ message: 'Required field' }),
     class_validator_1.IsString({ message: 'Field need be a string' }),
+    swagger_1.ApiProperty(),
     __metadata("design:type", String)
 ], TodoCreateDto.prototype, "description", void 0);
 exports.TodoCreateDto = TodoCreateDto;

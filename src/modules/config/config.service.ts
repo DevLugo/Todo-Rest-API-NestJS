@@ -4,7 +4,7 @@ export class ConfigService {
   private readonly envConfig: { [key: string]: string };
 
   constructor() {
-    const isDevelopmentEnv = process.env.NODE_ENV !== 'production';
+    const isDevelopmentEnv = process.env.NODE_ENV !== 'productions';
 
     this.envConfig = {
       PORT: process.env.PORT,

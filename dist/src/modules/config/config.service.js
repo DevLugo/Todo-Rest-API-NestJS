@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class ConfigService {
     constructor() {
-        const isDevelopmentEnv = process.env.NODE_ENV !== 'production';
+        const isDevelopmentEnv = process.env.NODE_ENV !== 'productions';
         this.envConfig = {
-            PORT: '80',
+            PORT: process.env.PORT,
         };
     }
     get(key) {

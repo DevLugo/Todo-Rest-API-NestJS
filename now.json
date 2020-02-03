@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "name": "nestjs-now",
+  "builds": [
+    {
+      "src": "dist/src/main.js",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/src/main.js"
+    }
+  ],
+  "build": {
+    "env": {
+      "JWT_SECRET": "QWEQWEQWEQWE",
+      "PORT": "5000",
+      "HOST": "remotemysql.com",
+      "USERNAME": "bZgFfiI8s8",
+      "PASSWORD": "H91gOp9Ajd",
+      "DATABASE": "bZgFfiI8s8",
+      "NODE_ENV": "production"
+    }
+  }
+}

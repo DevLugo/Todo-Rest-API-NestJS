@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const dto_1 = require("./dto");
 const auth_service_1 = require("./auth.service");
+const swagger_1 = require("@nestjs/swagger");
+const token_dto_1 = require("./dto/token.dto");
 let AuthController = class AuthController {
     constructor(_authservice) {
         this._authservice = _authservice;
@@ -35,6 +37,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "signup", null);
 __decorate([
+    swagger_1.ApiResponse({ status: 200, type: token_dto_1.ToekenDto }),
     common_1.Post('/signin'),
     common_1.UsePipes(common_1.ValidationPipe),
     __param(0, common_1.Body()),

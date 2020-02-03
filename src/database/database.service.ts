@@ -3,6 +3,7 @@ import { ConfigModule } from '../modules/config/config.module';
 import { ConfigService } from '../modules/config/config.service';
 import { ConnectionOptions } from 'typeorm';
 import { Configuration } from '../modules/config/config.keys';
+import { join } from 'path';
 
 export const databaseProviders = [
   TypeOrmModule.forRootAsync({
@@ -12,11 +13,11 @@ export const databaseProviders = [
       return {
         ssl: true,
         type: 'mysql' as 'mysql',
-        host: config.get(Configuration.HOST),
-        username: config.get(Configuration.USERNAME),
-        database: config.get(Configuration.DATABASE),
-        password: config.get(Configuration.PASSWORD),
-        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+        host: 'remotemysql.com',
+        username: 'bZgFfiI8s8',
+        database: 'bZgFfiI8s8',
+        password: 'H91gOp9Ajd',
+        entities: ['dist/**/*.entity.js'],
         migrations: [__dirname + '/migrations/*{.ts,.js}'],
       } as ConnectionOptions;
     },

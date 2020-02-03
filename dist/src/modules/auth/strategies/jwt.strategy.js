@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const passport_1 = require("@nestjs/passport");
 const passport_jwt_1 = require("passport-jwt");
 const config_service_1 = require("../../config/config.service");
-const config_keys_1 = require("../../config/config.keys");
 const auth_repository_1 = require("../auth.repository");
 const typeorm_1 = require("@nestjs/typeorm");
 const common_1 = require("@nestjs/common");
@@ -23,7 +22,7 @@ let JwtStrategy = class JwtStrategy extends passport_1.PassportStrategy(passport
     constructor(_configService, _authRepository) {
         super({
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
-            secretOrKey: _configService.get(config_keys_1.Configuration.JWT_SECRET),
+            secretOrKey: 'ASDASDASD',
         });
         this._configService = _configService;
         this._authRepository = _authRepository;

@@ -7,7 +7,7 @@ export class ConfigService {
     const isDevelopmentEnv = process.env.NODE_ENV !== 'production';
 
     this.envConfig = {
-      PORT: '8080',
+      PORT: '9090',
     };
   }
 

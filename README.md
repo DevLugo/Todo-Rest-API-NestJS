@@ -2,9 +2,6 @@
 A Simple Rest API for a TODO-List with JWT-Authentication and deploy to azure with azure-pipelines
 ### Live Demo: https://nestjs-todo-rest.azurewebsites.net/api/
 
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
 
 
 ### Tech
@@ -38,5 +35,8 @@ $ npm run test
   
   By Rodolfo Lugo
   
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+</p>
 
  
